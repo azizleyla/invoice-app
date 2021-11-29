@@ -19,5 +19,41 @@ export const loadInvoicesStart = () => {
     dispatch(loadInvoices({ invoices: invoices }));
   };
 };
+export const createInvoiceStart = (values) => {
+  return async function (dispatch) {
+    // const response = await axios.post(URL);
+    await axios.post(URL, {
+      createdAt: "2021-11-05",
+      paymentDue: "2021-11-12",
+      description: "September",
+      paymentTerms: 7,
+      clientName: values.clientName,
+      clientEmail: "",
+      status: "draft",
+      senderAddress: {
+        street: "19 Union Terrace",
+        city: "London",
+        postCode: "E1 3EZ",
+        country: "United Kingdom",
+      },
+      clientAddress: {
+        street: "",
+        city: "",
+        postCode: "",
+        country: "",
+      },
+      items: [
+        {
+          name: "Logo Re-design",
+          quantity: 1,
+          price: 3102.04,
+          total: 3102.04,
+        },
+      ],
+      total: 3102.04,
+    });
+  };
+};
+
 const invoiceReducer = invoiceSlice.reducer;
 export default invoiceReducer;
